@@ -41,3 +41,26 @@ func PipeReduce[S, T any](initial T, f func(T, S) T) func([]S) T {
 		return acc
 	}
 }
+
+////////////////////////////////////////
+// A more OOP style
+////////////////////////////////////////
+
+//type List[T any] struct {
+//	l []T
+//}
+
+// This appears to be illegal
+//func (l *List[T]) Map[S any]() []S {
+//	//...
+//}
+
+// Because we can't put type parameters on struct methods, I don't think we can
+// write an OO-style chain of collection manipulation like:
+//
+// listOfStrings.
+// 	Map(toInts).
+// 	Filter(lessThan10).
+// 	Reduce(sum)
+//
+// Which is a shame...
