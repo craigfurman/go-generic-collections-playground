@@ -1,6 +1,36 @@
 package collections
 
 ////////////////////////////////////////
+// Simple functions
+////////////////////////////////////////
+
+func Map[S, T any](l []S, f func(S) T) []T {
+	var ret []T
+	for _, e := range l {
+		ret = append(ret, f(e))
+	}
+	return ret
+}
+
+func Filter[S any](l []S, pred func(S) bool) []S {
+	var ret []S
+	for _, e := range l {
+		if pred(e) {
+			ret = append(ret, e)
+		}
+	}
+	return ret
+}
+
+func Reduce[S, T any](initial T, l []S, f func(T, S) T) T {
+	acc := initial
+	for _, e := range l {
+		acc = f(acc, e)
+	}
+	return acc
+}
+
+////////////////////////////////////////
 // Pipes
 ////////////////////////////////////////
 
